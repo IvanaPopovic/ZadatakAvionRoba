@@ -24,6 +24,8 @@ public class Avion {
     @DatabaseField(columnName = POLJE_RASPON_KRILA)
     private int rasponKrila;
 
+    private Boolean poleteo = true;
+
     //Atribut za vise kraj veze izmendju klasa Avion i Roba
     @ForeignCollectionField(foreignFieldName = "avion")
     private ForeignCollection<Roba> roba;
@@ -62,6 +64,14 @@ public class Avion {
 
     public void setRasponKrila(int rasponKrila) {
         this.rasponKrila = rasponKrila;
+    }
+
+    public Boolean isPoleteo() {
+        return poleteo;
+    }
+
+    public void setPoleteo(Boolean poleteo) {
+        this.poleteo= poleteo;
     }
 
 
