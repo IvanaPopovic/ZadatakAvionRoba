@@ -3,6 +3,8 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import model.Roba;
+import model.Avion;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,8 +20,21 @@ public class Zadatak1KreiranjeTabela {
             //Potrebno je prvo konektovati se na bazu
             connectionSource=new JdbcConnectionSource("jdbc:sqlite:avionRoba.db");
 
+             /*Brisanje tabela iz baze
+              Zbog ogranicenja referencijalnog integriteta
+              prvo treba obrisati tabelu za klasu Roba a
+              zatim Avion
+            */
+            TableUtils.dropTable(connectionSource, Roba.class,true);
+            TableUtils.dropTable(connectionSource, Avion.class,true);
 
-
+            /*Kreiranje tabela u bazi
+              Zbog ogranicenja referencijalnog integriteta
+              prvo treba kreirati tabelu za klasu Avion a
+              zatim Roba
+            */
+            TableUtils.createTable(connectionSource, Avion.class);
+            TableUtils.createTable(connectionSource, Roba.class);
 
 
         } catch (SQLException e) {
